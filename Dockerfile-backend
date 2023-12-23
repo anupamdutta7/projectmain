@@ -10,10 +10,10 @@ RUN git clone https://github.com/anupamdevops321/devops-fullstack-app.git .
 WORKDIR /app/backend
 
 # Download Go modules
-RUN go clean -modcache && go mod download
+RUN go clean -modcache && go mod download && CGO_ENABLED=0 GOOS=linux go build -o app .
 
 # Build the Go binary
-RUN CGO_ENABLED=0 GOOS=linux go build -o app .
+#RUN CGO_ENABLED=0 GOOS=linux go build -o app .
 
 # Production stage
 FROM alpine:latest
